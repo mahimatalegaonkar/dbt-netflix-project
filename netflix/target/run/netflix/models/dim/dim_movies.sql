@@ -1,0 +1,18 @@
+
+  
+    
+
+        create or replace transient table MOVIELENS.DEV.dim_movies
+         as
+        (with src_movies as (
+    select * from MOVIELENS.DEV.src_movies_data
+)
+select
+    movie_id,
+    INITCAP(TRIM(title)) as movie_title,
+    SPLIT(genres, '|') as genre_array,
+    genres
+from src_movies
+        );
+      
+  
